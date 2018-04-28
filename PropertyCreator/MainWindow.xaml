@@ -1,0 +1,80 @@
+﻿<Window
+	x:Class="PropertyCreator.MainWindow"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:local="clr-namespace:PropertyCreator"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	Title="Create property"
+	Width="700" Height="970"
+	WindowStartupLocation="CenterScreen"
+	mc:Ignorable="d">
+	<StackPanel>
+		<Grid>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="160"/>
+				<ColumnDefinition/>
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="35"/>
+				<RowDefinition Height="35"/>
+				<RowDefinition Height="35"/>
+				<RowDefinition Height="35" />
+				<RowDefinition Height="35" />
+			</Grid.RowDefinitions>
+			<Label Margin="5">Type</Label>
+			<TextBox Name="PropertyTypeTextBox"
+				Grid.Column="1"
+				Margin="5"
+				Text="{Binding PropertyType}"/>
+			<Label Grid.Row="1" Margin="5">Initial value (optional)</Label>
+			<TextBox Name="PropertyInitTextBox"
+				Grid.Row="1" Grid.Column="1"
+				Margin="5"
+				Text="{Binding PropertyInit}"/>
+			<Label Grid.Row="2" Margin="5">Name</Label>
+			<TextBox Name="PropertyNameTextBox"
+				Grid.Row="2" Grid.Column="1"
+				Margin="5"
+				Text="{Binding PropertyName}"/>
+			<CheckBox Name="ÏsDependencyProperty" Grid.Row="3" Grid.ColumnSpan="2" Margin="5" IsChecked="{Binding IsDependencyProperty}">Dependency property?</CheckBox>
+			
+			<Label Grid.Row="4" Margin="5">User control class name</Label>
+			<TextBox Name="UserControlClassNameTextBox" Grid.Row="4" Grid.Column="1" Margin="5" Text="{Binding ControlClassName}" />
+
+		</Grid>
+		<TextBox Name="ResultTextBox"
+			Height="700"
+			Margin="5"
+			FontFamily="Courier New"
+			ScrollViewer.VerticalScrollBarVisibility="Auto"
+			ScrollViewer.HorizontalScrollBarVisibility="Auto"
+			ScrollViewer.CanContentScroll="True"
+			Text="{Binding PropertyCode, Mode=TwoWay, NotifyOnSourceUpdated=True}"
+			TextWrapping="Wrap"/>
+		<WrapPanel>
+			<Button Name="CreateProperty"
+				Width="100"
+				Margin="5"
+				Click="OnCreatePropertyButtonClick">
+				Create
+			</Button>
+			<Button Name="AddProperty"
+				Width="100"
+				Margin="5"
+				Click="OnAddPropertyButtonClick">
+				Add
+			</Button>
+			<Button Name="AddAndClearProperty" Width="100" Margin="5" Click="OnClearAndAddPropertyButtonClicked">
+				Clear entry
+			</Button>
+
+			<Button Name="Clear"
+				Width="100"
+				Margin="5"
+				Click="OnClearButtonClick">
+				Clear
+			</Button>
+			<TextBlock Width="150" TextWrapping="Wrap">Text is copied to clipboard automatically</TextBlock>
+		</WrapPanel>
+
+	</StackPanel>
+</Window>
