@@ -110,7 +110,7 @@ namespace PropertyCreator
 					}
 				if (PropertyInit.Length > 0)
 					{
-					PropertyCode += ", new PropertyMetaData(" + PropertyInit + "));\r\n";
+					PropertyCode += ", new PropertyMetadata(" + PropertyInit + "));\r\n";
 					}
 				else
 					{
