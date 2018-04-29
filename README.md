@@ -4,7 +4,7 @@ Tool to generate C# code for properties and DependencyProperties for WPF applica
 If you create WPF applications, you often need to create a large number of new properties. Writing code for properties is a tedious job. This tool simplifies it, just tell what you need, and code will be generated.
 
 Features:
-- Generates properties including INotify interfacing
+- Generates properties including INotifyPropertyChanged interfacing
 - Optional initial value
 - Generates code for Dependency Properties, including optional default value and simple registration.
 
