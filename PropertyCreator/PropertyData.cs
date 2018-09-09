@@ -9,11 +9,14 @@ namespace PropertyCreator
 	{
 	public class PropertyData : CNotifier
 		{
-		private String _PropertyType = String.Empty;
+
 		private String _PropertyInit = String.Empty;
 		private String _PropertyName = String.Empty;
 		private String _PropertyCode = String.Empty;
+		private String _PropertyComment = String.Empty;
 
+
+		private String _PropertyType = String.Empty;
 		public String PropertyType
 			{
 			get { return _PropertyType; }
@@ -51,6 +54,16 @@ namespace PropertyCreator
 				{
 				_PropertyCode = value;
 				OnPropertyChanged("PropertyCode");
+				}
+			}
+
+		public String PropertyComment
+			{
+			get { return _PropertyComment; }
+			set
+				{
+				_PropertyComment = value;
+				OnPropertyChanged("PropertyComment");
 				}
 			}
 
@@ -96,6 +109,10 @@ namespace PropertyCreator
 			if (PropertyType.Length > 0 && PropertyName.Length > 0)
 				{
 				// Declare the property
+				if(PropertyComment.Length>0)
+					{
+					PropertyCode += "/*\r\n"+ PropertyComment+"\r\n*/\r\n";
+					}
 				PropertyCode += "public " + PropertyType + " " + PropertyName + "\r\n";
 				PropertyCode += "\t{\r\n";
 				PropertyCode += "\tget { return (" + PropertyType + ") GetValue(" + PropertyName + "Property); }\r\n";
@@ -125,6 +142,10 @@ namespace PropertyCreator
 			{
 			if (PropertyType.Length > 0 && PropertyName.Length > 0)
 				{
+				if(PropertyComment.Length>0)
+					{
+					PropertyCode += "/*\r\n"+ PropertyComment+"\r\n*/\r\n";
+					}
 				if (PropertyInit.Length == 0)
 					{
 					PropertyCode += "private " + PropertyType + " _" + PropertyName + ";\r\n";
@@ -144,6 +165,7 @@ namespace PropertyCreator
 		public void AddProperty()
 			{
 			PropertyName = String.Empty;
+			PropertyComment=String.Empty;
 			PropertyCode += "\r\n";
 			}
 
@@ -152,6 +174,7 @@ namespace PropertyCreator
 			PropertyType = String.Empty;
 			PropertyInit = String.Empty;
 			PropertyName = String.Empty;
+			PropertyComment=String.Empty;
 			PropertyCode += "\r\n";
 			}
 
@@ -161,6 +184,7 @@ namespace PropertyCreator
 			PropertyInit = String.Empty;
 			PropertyName = String.Empty;
 			PropertyCode = String.Empty;
+			PropertyComment=String.Empty;
 			ControlClassName = String.Empty;
 			IsDependencyProperty = false;
 			}
