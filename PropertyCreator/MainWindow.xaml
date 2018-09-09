@@ -4,7 +4,7 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:local="clr-namespace:PropertyCreator"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	Title="Create property"
-	Width="700" Height="970"
+	Width="700" Height="700"
 	WindowStartupLocation="CenterScreen"
 	mc:Ignorable="d">
 	<StackPanel>
@@ -17,6 +17,7 @@
 				<RowDefinition Height="35"/>
 				<RowDefinition Height="35"/>
 				<RowDefinition Height="35"/>
+			    <RowDefinition Height="90"/>
 				<RowDefinition Height="35" />
 				<RowDefinition Height="35" />
 			</Grid.RowDefinitions>
@@ -35,15 +36,20 @@
 				Grid.Row="2" Grid.Column="1"
 				Margin="5"
 				Text="{Binding PropertyName}"/>
-			<CheckBox Name="ÏsDependencyProperty" Grid.Row="3" Grid.ColumnSpan="2" Margin="5" IsChecked="{Binding IsDependencyProperty}">Dependency property?</CheckBox>
+		    <Label Grid.Row="3" Margin="5">Comment (optional)</Label>
+		    <TextBox Name="PropertyCommentTextBox"
+		             Grid.Row="3" Grid.Column="1"
+		             Margin="5"
+		             Text="{Binding PropertyComment}" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" AcceptsTab="True"/>
+
+
+			<CheckBox Name="ÏsDependencyProperty" Grid.Row="4" Grid.ColumnSpan="2" Margin="5" IsChecked="{Binding IsDependencyProperty}">Dependency property?</CheckBox>
 			
-			<Label Grid.Row="4" Margin="5">User control class name</Label>
-			<TextBox Name="UserControlClassNameTextBox" Grid.Row="4" Grid.Column="1" Margin="5" Text="{Binding ControlClassName}" />
+			<Label Grid.Row="5" Margin="5">User control class name</Label>
+			<TextBox Name="UserControlClassNameTextBox" Grid.Row="5" Grid.Column="1" Margin="5" Text="{Binding ControlClassName}" />
 
 		</Grid>
-		<TextBox Name="ResultTextBox"
-			Height="700"
-			Margin="5"
+		<TextBox Name="ResultTextBox" Height="246" Margin="5"
 			FontFamily="Courier New"
 			ScrollViewer.VerticalScrollBarVisibility="Auto"
 			ScrollViewer.HorizontalScrollBarVisibility="Auto"
